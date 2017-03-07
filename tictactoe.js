@@ -1,8 +1,10 @@
 const fs = require('fs');
 
-fs.writeFileSync('./board.js', JSON.stringify('URMOM!!!'));
-const lol = fs.readFileSync('./board.js', 'utf8');
-console.log(lol);
+const board = makeBoard();
+
+function writeBoard(board) {
+  fs.writeFileSync('./board.js', JSON.stringify(board));
+}
 
 function makeBoard() {
   return [
@@ -13,8 +15,15 @@ function makeBoard() {
 }
 
 function printBoard() {
-  console.log(fs.readFileSync('./board.js', 'utf8'));
+  let board = fs.readFileSync('./board.js', 'utf8');
+  board = JSON.parse(board);
+  for (let i = 0; i < board.length; i += 1) {
+    board[i] = board[i].join(' - ');
+  }
+  board = board.join('\n');
+  console.log(board);
 }
+writeBoard(makeBoard());
 
 printBoard();
 
