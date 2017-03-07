@@ -2,10 +2,11 @@ const fs = require('fs');
 
 function writeBoard(board) {
   fs.writeFileSync('./board.js', JSON.stringify(board));
+  return board;
 }
 
 function resetBoard() {
-  writeBoard(makeBoard());
+  return writeBoard(makeBoard());
 }
 
 function makeBoard() {
@@ -50,11 +51,35 @@ function checkBoardForTie(board) {
   return true;
 }
 
-const board = makeBoard();
-resetBoard();
-modifyBoard(board, [0,0], 'X');
-writeBoard(board);
-printBoard();
+function initializeGame() {
+  let currentPlayer = 'X';
+  const board = resetBoard();
+  // newRound(board, );
+
+}
+
+function newRound(board, coordinates, player) {
+
+}
+
+// initializeGame();
+
+// const board = makeBoard();
+// modifyBoard(board, [0,0], 'X');
+// writeBoard(board);
+// printBoard();
+
+
+function takeUserInput() {
+  const stdin = process.openStdin();
+  stdin.addListener('data', function(d) {
+    const string = d.toString().trim();
+    console.log(`Your input: ${string}`);
+    takeUserInput();
+  });
+}
+
+takeUserInput();
 
 // how to persist changes?
 
