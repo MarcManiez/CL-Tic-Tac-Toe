@@ -41,6 +41,15 @@ function checkBoardForWin(board) {
   return false;
 }
 
+function checkBoardForTie(board) {
+  for (let i = 0; i < board.length; i += 1) {
+    for (let n  = 0; n < board[i].length; n += 1) {
+      if (board[i][n] === ' ') return false;
+    }
+  }
+  return true;
+}
+
 const board = makeBoard();
 resetBoard();
 modifyBoard(board, [0,0], 'X');
