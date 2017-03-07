@@ -6,6 +6,10 @@ function writeBoard(board) {
   fs.writeFileSync('./board.js', JSON.stringify(board));
 }
 
+function resetBoard() {
+  writeBoard(makeBoard());
+}
+
 function makeBoard() {
   return [
     [' ', ' ', ' '],
@@ -23,8 +27,8 @@ function printBoard() {
   board = board.join('\n');
   console.log(board);
 }
-writeBoard(makeBoard());
 
+resetBoard();
 printBoard();
 
 // how to persist changes?
