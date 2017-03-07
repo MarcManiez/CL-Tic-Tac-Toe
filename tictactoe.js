@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-const board = makeBoard();
-
 function writeBoard(board) {
   fs.writeFileSync('./board.js', JSON.stringify(board));
 }
@@ -28,7 +26,15 @@ function printBoard() {
   console.log(board);
 }
 
+function modifyBoard(board, coordinates, player) {
+  board[coordinates[0]][coordinates[1]] = player;
+  return board;
+}
+
+const board = makeBoard();
 resetBoard();
+modifyBoard(board, [0,0], 'X');
+writeBoard(board);
 printBoard();
 
 // how to persist changes?
