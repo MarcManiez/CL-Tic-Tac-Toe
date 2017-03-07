@@ -31,6 +31,16 @@ function modifyBoard(board, coordinates, player) {
   return board;
 }
 
+function checkBoardForWin(board) {
+  if (board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') return 'X';
+  if (board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') return 'O';
+  for (let i = 0; i < board.length; i += 1) {
+    if (board[i].every(item => item === 'X')) return 'X';
+    if (board[i].every(item => item === 'O')) return 'O';
+  }
+  return false;
+}
+
 const board = makeBoard();
 resetBoard();
 modifyBoard(board, [0,0], 'X');
